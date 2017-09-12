@@ -2,7 +2,7 @@ package intro; //package declaration: matches folder where this file is located
 
 //class header
 public class IntroMain {
-	//
+	
 	
 	//this is a constant, they can be public
 	public static final String[] DESCRIPTIONS = {" is a teacher at BTHS", " is a student at BTHS"}; 
