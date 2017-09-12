@@ -2,6 +2,7 @@ package intro;
 
 public class CodingConventions {
 	
+	
 	//FIELDS ARE AT THE TOP!!
 	private String name; //NOTE:DECLARE FIELDS ONLY, INSTANTIATE IN THE CONSTRUCTION
 	/*
