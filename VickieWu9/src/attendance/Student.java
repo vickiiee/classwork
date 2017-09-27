@@ -29,35 +29,35 @@ public class Student implements Attendee
 	public void setPresent(boolean present) 
 	{
 		//sets whether the student has been marked present
-		
+		this.present = present;
 	}
 
 
 	public String getFirstName() 
 	{
 		//returns the firstName
-		return null;
+		return firstName;
 	}
 
 
 	public String getLastName()
 	{
 		//returns the lastNameName
-		return null;
+		return lastName;
 	}
 
 	public boolean mathces(String first, String last)
 	{
 		//returns true if 'first' and 'last' match this Attendee's firstName and lastName. 
 		//This should NOT be case sensitive. 
-		return false;
+		
 	}
 
 	public boolean matches(String last)
 	{
-		//returns true if 'first' matches this Attendee's firstName. 
+		//returns true if 'last' matches this Attendee's lastName. 
 		//This should NOT be case sensitive.
-		return false;
+		
 	}
 
 	
