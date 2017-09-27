@@ -9,59 +9,67 @@ public class Student implements Attendee
 	 * Use these values to instantiate corresponding fields.
 	 * @return
 	 */
-	public Student()
-	{
-		
-	}
 	
-	private String first;
-	private String last;
+	private String firstName;
+	private String lastName;
+	private boolean present;
 	
-	public students( String firstName, String lastName)
+	public Student( String firstName, String lastName)
 	{
-		this.first = firstName;
-		this.last = lastName;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
-	@Override
-	public boolean isPresent() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isPresent() 
+	{
+		//returns true if the student has been marked present, false otherwise
+		return present;
 	}
 
-	@Override
-	public void setPresent(boolean present) {
-		// TODO Auto-generated method stub
+	public void setPresent(boolean present) 
+	{
+		//sets whether the student has been marked present
 		
 	}
 
-	@Override
-	public String getFirstName() {
-		// TODO Auto-generated method stub
+
+	public String getFirstName() 
+	{
+		//returns the firstName
 		return null;
 	}
 
-	@Override
-	public String getLastName() {
-		// TODO Auto-generated method stub
+
+	public String getLastName()
+	{
+		//returns the lastNameName
 		return null;
 	}
 
-	@Override
-	public boolean mathces(String first, String last) {
-		// TODO Auto-generated method stub
+	public boolean mathces(String first, String last)
+	{
+		//returns true if 'first' and 'last' match this Attendee's firstName and lastName. 
+		//This should NOT be case sensitive. 
 		return false;
 	}
 
-	@Override
-	public boolean matches(String last) {
-		// TODO Auto-generated method stub
+	public boolean matches(String last)
+	{
+		//returns true if 'first' matches this Attendee's firstName. 
+		//This should NOT be case sensitive.
 		return false;
 	}
 
-	@Override
-	public String getReportString() {
-		// TODO Auto-generated method stub
+	
+	public String getReportString() 
+	{
+		//returns three words separated by 20 spaces: 
+		//at index 0, the last name
+		//at index 20, the first name
+		//at index 40, the word PRESENT or ABSENT
+		//ADDED CHALLENGE:
+		//if last name or first name is longer than 20 characters, 
+		//cut off the last three letters and replace with "..."
 		return null;
 	}
 }
