@@ -87,33 +87,33 @@ public class Student implements Attendee
 		//if last name or first name is longer than 20 characters, 
 		//cut off the last three letters and replace with "..."
 		
-		String lName = lastName;
-		lName = addSpaces(lName, 20); //add spaces after last name but stop when it reaches 20
+		String record = lastName;
+		record = addSpaces(record, 20); //add spaces after last name but stop when it reaches 20
 		
-		lName += firstName; // add the first name at index 20 after spaces
+		record += firstName; // add the first name at index 20 after spaces
 		
-		lName = addSpaces(lName, 40); // add spaces after first name until it reaches index 40
+		record = addSpaces(record, 40); // add spaces after first name until it reaches index 40
 		
 		if ( present == true)
 		{
-			lName += "PRESENT";// if the student is marked present, add present after spaces at index 40
+			record += "PRESENT";// if the student is marked present, add present after spaces at index 40
 		}
 		else
 		{
-			lName += "ABSENT";// if the student is marked absent, add present after spaces at index 40
+			record += "ABSENT";// if the student is marked absent, add present after spaces at index 40
 		}
 		
-		return lName;
+		return record;
 	}
 	
-	public String addSpaces(String lName , int length)
+	public String addSpaces(String z , int length)
 	{
 		//spaces after the last name before 20 
 		
-		if (lName.length() < length)
+		if (z.length() < length)
 		{
-			lName += " ";
+			z += " ";
 		}
-		return lName;
+		return z;
 	}
 }
