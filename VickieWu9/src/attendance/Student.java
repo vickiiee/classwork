@@ -49,7 +49,16 @@ public class Student implements Attendee
 	public boolean mathces(String first, String last)
 	{
 		//returns true if 'first' and 'last' match this Attendee's firstName and lastName. 
-		//This should NOT be case sensitive. 
+		//This should NOT be case sensitive.
+		//.toLowerCase makes it not case sensitive
+		if (first.toLowerCase().equals(firstName.toLowerCase()) && last.toLowerCase().equals(lastName.toLowerCase()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		
 	}
 
@@ -57,7 +66,14 @@ public class Student implements Attendee
 	{
 		//returns true if 'last' matches this Attendee's lastName. 
 		//This should NOT be case sensitive.
-		
+		if (last.toLowerCase().equals(lastName.toLowerCase))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	
@@ -70,6 +86,7 @@ public class Student implements Attendee
 		//ADDED CHALLENGE:
 		//if last name or first name is longer than 20 characters, 
 		//cut off the last three letters and replace with "..."
-		return null;
+		
+		
 	}
 }
