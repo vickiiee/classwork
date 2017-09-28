@@ -108,12 +108,14 @@ public class Student implements Attendee
 	
 	public String addSpaces(String z , int length)
 	{
-		//spaces after the last name before 20 
+		//spaces after the last name before lengthattendance
 		
-		if (z.length() < length)
+		
+		while (z.length() < length)
 		{
 			z += " ";
 		}
 		return z;
+		
 	}
 }
