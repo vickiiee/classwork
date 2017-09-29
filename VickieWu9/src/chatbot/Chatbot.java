@@ -3,7 +3,7 @@ package chatbot;
 public class Chatbot {
 
 	private String username;
-	private boolean chatting;
+	private boolean chatting; // used to control while block
 	private Topic vickie;
 	
 	public Chatbot() {
@@ -12,6 +12,16 @@ public class Chatbot {
 		chatting = true;
 	}
 
+	public String getUsername()
+	{
+		return username;
+	}
+	
+	public Topic getVickie()
+	{
+		return vickie;
+	}
+	
 	public void startChatting() 
 	{
 		//whenever you print or get method, use these methods

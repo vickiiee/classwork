@@ -6,6 +6,8 @@ public class ChatbotMain
 {
 	
 	public static final Chatbot chatbot = new Chatbot();
+	
+	
 	private static Scanner inputSource = new Scanner(System.in);
 
 	public static void main(String[] args) 
@@ -22,7 +24,7 @@ public class ChatbotMain
 	public static int findKeyword(String searchString, String keyword, int startPsn)
 	{
 		//method will only work if the two methods below work
-		//make lowercase
+		//make lower case
 		
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();
@@ -62,7 +64,7 @@ public class ChatbotMain
 
 	public static void multiLinePrint(String s){
 		String printString = "";
-		int cutoff = 25;
+		int cutoff = 55;
 		//this while loop last as long as there are words left in the original String
 		while(s.length() > 0){
 
