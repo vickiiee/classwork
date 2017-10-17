@@ -4,9 +4,22 @@ import java.util.Arrays;
 
 public class ArraysMain {
 	
-	//private int[] testArray;
 	private String[]suits;
 	private String[] values;
+	
+	public static void main(String[] args) 
+	{
+		ArraysMain sample = new ArraysMain();
+		//1. Arrays are collections of primitives and Objects
+		//SPECIAL NOTE: This is the ONLY collection of primitives
+		
+		//2. Size cannot be edited
+		
+		/*3. Elements of an array are REFERENCES to objects.
+		 *  in other words, changing an element of an array changes the reference, not the object.
+		 */
+		
+	}
 	
 	public ArraysMain() 
 	{
@@ -16,7 +29,108 @@ public class ArraysMain {
 		//swap(testArray,0,1);
 		//shuffle(testArray);
 		//System.out.println(Arrays.toString(testArray));
+		//warmUpMethods();
+		tuesdayMethods();
+
+	}
+	private void tuesdayMethods() {
+		int [] orderTest = {1,2,3,4,5,6,7,8,9,10};
+		//cycleThrough(orderTest,5);
+		//frontToBack(orderTest);
+		System.out.println(Arrays.toString(orderTest));
+		System.out.println(longestConsecutiveSequence(orderTest) + " is the l.c.s");
+	}
+	private int longestConsecutiveSequence(int arr[]) {
+		//return the length of the longest cons. sequence in the array
+		//for EX:
+		//{1,2,3,2,3,4,5,2,3,4)} -> 4
+		// lCS({16,17,18,19,2,5,6,7,8,9,10}) -> 6
 		
+		int maxLength = 1;
+		int currentCount = 1;
+		
+		for (int i = 0; i < arr.length; i++)
+		{
+			while (i + currentCount < arr.length && isConsecutive(arr, i, i + currentCount))
+			{
+				currentCount ++;
+			}
+			if (currentCount > maxLength) {
+				maxLength = currentCount;
+			}
+			i = i + currentCount -1 ;//saves time
+			
+			currentCount = 1;
+		}
+		
+		return maxLength;
+
+		
+	}
+	
+	private boolean isConsecutive(int[] arr, int start, int end)
+	{//returns true if all the elements from start to end are increasing by one
+		//ex: iC({1,7,3,6,7,8,12},3,5)
+		
+		for (int i = start; i < end; i++)
+		{
+			if( arr[i]+1 != arr[i + 1])
+			{
+				return false;
+			}
+		}return true;
+	}
+
+	
+	
+	private void cycleThrough(int[] arr, int n) {
+		for (int i = 0; i< n; i ++)
+		{
+			frontToBack(arr);
+		}
+	}
+
+	private void frontToBack(int[] arr) {
+		//removes the element at index 0, pushes all other elements forward:
+		//1 goes to 0, 2 goes to 1, ...
+		//puts the element that was at index 0 at the end
+		
+		int placeHolder = arr[0];
+		for(int i = 0; i < arr.length-1; i++)
+		{
+			arr[i] = arr[i+1];
+		}
+		arr[arr.length - 1] = placeHolder;
+	}
+	
+	private void warmUpMethods()
+	{
+		int [] order = {1,2,3,4,5,6,7,8,9,10};
+		reverseOrder(order);
+		System.out.println(Arrays.toString(order));
+		System.out.println(Arrays.toString(subArray(order,3,4)));
+	}
+	
+	
+	private int[] subArray(int[] arr, int psn, int length) {
+		int [] sub = new int [length];
+		for (int i = 0; i < length; i++)
+		{
+			sub[i] = arr[i +psn];
+		}
+		return sub;
+	}
+	
+	public void reverseOrder(int[] arr)
+	{	
+		for (int i = 0; i< arr.length/2; i++)
+		{
+			swap(arr,i,arr.length-1-i);
+		}
+	}
+	
+	public void cardMethods()
+	{
 		suits = new String[4];
 		suits[0] = "Clubs";
 		suits[1] = "Hearts";
@@ -34,9 +148,8 @@ public class ArraysMain {
 		values[11] = "Queen";
 		values[10] = "Jack";
 		printDeck();
-				
+		
 	}
-	
 	private String[] printDeck() {
 		String[] deck = new String[52];
 		int index = 0;
@@ -66,7 +179,7 @@ public class ArraysMain {
 		
 		arr[i] = arr[j];
 		arr[j] = placeHolder;
-	}
+	}          
 
 	private void populate1ToN(int[] arr) {
 		//populate arr with numbers from 1 to arr.length, in order
@@ -146,19 +259,7 @@ public class ArraysMain {
 				//Object arrays are not populated (null)
 	}
 	
-	public static void main(String[] args) 
-	{
-		ArraysMain sample = new ArraysMain();
-		//1. Arrays are collections of primitives and Objects
-		//SPECIAL NOTE: This is the ONLY collection of primitives
-		
-		//2. Size cannot be edited
-		
-		/*3. Elements of an array are REFERENCES to objects.
-		 *  in other words, changing an element of an array changes the reference, not the object.
-		 */
-		
-	}
+	
 
 	
 	public int diceRoll(int n)
