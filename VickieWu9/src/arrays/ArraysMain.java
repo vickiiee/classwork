@@ -30,16 +30,67 @@ public class ArraysMain {
 		//shuffle(testArray);
 		//System.out.println(Arrays.toString(testArray));
 		//warmUpMethods();
-		tuesdayMethods();
+		wednesdayMethods();
 
 	}
-	private void tuesdayMethods() {
-		int [] orderTest = {1,2,3,4,5,6,7,8,9,10};
-		//cycleThrough(orderTest,5);
-		//frontToBack(orderTest);
-		System.out.println(Arrays.toString(orderTest));
-		System.out.println(longestConsecutiveSequence(orderTest) + " is the l.c.s");
+	
+	private void wednesdayMethods() {
+		int[] diceRolls = new int [1000];
+		populate(diceRolls);
+		longestConsecutiveSeqAndIndex(diceRolls);
+		int[]data = longestConsecutiveSeqAndIndex(diceRolls);
+		int max = 1;
+		int longest = data[0];
+		System.out.println("The longest sequence is " + longest + " rolls. IT HAPPENED ON ROLL #" + data[1] + " the sequence was:" + Arrays.toString(subArray(diceRolls,data[1],data[0])) + ".");
+		
+		/*while (longest!=11)
+		{
+			data = longestConsecutiveSeqAndIndex(diceRolls);
+			longest = data[0];
+			if(longest>max)
+			{
+				max = longest;
+				System.out.println("The longest sequence is " + longest + " rolls. IT HAPPENED ON ROLL #" + data[1] + " the sequence was:" + Arrays.toString(subArray(diceRolls,data[1],data[0])) + ".");
+			}
+			}*/
 	}
+	
+	/**
+	 * BIG IDEA!
+	 * usually a method returns ONE piece of data (i.e. 'int', 'boolean', etc.)
+	 * if we ever want more than one piece of data, one way of doing so 
+	 * is by using an array, as you see here, a method that returns the length
+	 * of the sequence and its START position (both ints)
+	 * @param arr
+	 * @return
+	 */
+	private int[] longestConsecutiveSeqAndIndex(int[] arr) {
+		
+		int[] data = new int[2];
+		
+		data[0] = 1;
+		int currentCount = 1;
+		
+		for (int i = 0; i < arr.length; i++)
+		{
+			while (i + currentCount < arr.length && isConsecutive(arr, i, i + currentCount))
+			{
+				isConsecutive(arr,i,i+currentCount);
+				currentCount ++;
+			}
+			if (currentCount > data[0]) {
+				data[0] = currentCount;
+				//also store the index where this 
+				data[1] = i;
+			}
+			i = i + currentCount -1 ;//saves time
+			
+			currentCount = 1;
+		}
+		return data;
+	}
+	
+	
 	private int longestConsecutiveSequence(int arr[]) {
 		//return the length of the longest cons. sequence in the array
 		//for EX:
@@ -53,6 +104,7 @@ public class ArraysMain {
 		{
 			while (i + currentCount < arr.length && isConsecutive(arr, i, i + currentCount))
 			{
+				isConsecutive(arr,i,i+currentCount);
 				currentCount ++;
 			}
 			if (currentCount > maxLength) {
@@ -62,11 +114,18 @@ public class ArraysMain {
 			
 			currentCount = 1;
 		}
-		
 		return maxLength;
-
-		
 	}
+
+	private void tuesdayMethods() {
+		int [] orderTest = {1,2,3,4,5,6,7,8,9,10};
+		//cycleThrough(orderTest,5);
+		//frontToBack(orderTest);
+		System.out.println(Arrays.toString(orderTest));
+		System.out.println(longestConsecutiveSequence(orderTest) + " is the l.c.s");
+	}
+	
+	
 	
 	private boolean isConsecutive(int[] arr, int start, int end)
 	{//returns true if all the elements from start to end are increasing by one
