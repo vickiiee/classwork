@@ -17,6 +17,7 @@ public static final String[] FIRST_START = {"Chr","Am","L","D","Th","Br","B"};
 	private Borough home;
 	private Hobby hobby;
 	private Person[] friends;
+	private  String nickname;
 	
 	public Person(String first, String last, Borough home) {
 		this.firstName = first;
@@ -24,7 +25,70 @@ public static final String[] FIRST_START = {"Chr","Am","L","D","Th","Br","B"};
 		this.home = home;
 		friends = new Person[3];
 		hobby = Hobby.randomHobby();
+		nickname = createNickname(firstName);
 		
+	}
+	
+	
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+
+	/**
+	 * PASS BY VALUE 
+	 * the parameters  of a method contain only values, not references
+	 * therefore, when they are changed, the reference to the original object
+	 * does not change
+	 * @param Name
+	 * @return
+	 */
+	public static String createNickname(String Name)
+	{
+		/*
+		 * returns a String equal to name up to the index of (but not including)
+		 * the 2nd vowel
+		 * cerateNickname ("Johnathan") -> Jon
+		 */
+		 int vowelCount = 0;
+		 String nickname = "";
+		for (int i = 0; i<Name.length(); i++)
+		{
+			 String letter = Name.substring(i,i+1);
+			 if (isVowel(letter))
+			 {
+				 vowelCount ++;
+				if(vowelCount != 2)
+				{
+					nickname+= letter;
+				}else{
+					return nickname;
+				}
+			 }else {
+				 nickname+= letter;
+			 }
+		}
+		return nickname;
+	}
+	
+	public static boolean isVowel(String letter)
+	{
+		letter = letter.toLowerCase();
+		if(letter.equals("a") ||  letter.equals("e") || letter.equals("i") || letter.equals("o") || letter.equals("u") )
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
 	}
 	
 	/**
@@ -64,6 +128,6 @@ public static final String[] FIRST_START = {"Chr","Am","L","D","Th","Br","B"};
 	
 	public String toString() {
 		return "My name is "+firstName+" "+
-				lastName+" and I am from "+home+".";
+				lastName+" and I am from "+home+". Call me " + nickname ;
 	}
 }
