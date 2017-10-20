@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ArraysMain {
 	
-	private String[]suits;
+	private String[] suits;
 	private String[] values;
 	
 	public static void main(String[] args) 
