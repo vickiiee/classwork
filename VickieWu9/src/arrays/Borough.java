@@ -3,7 +3,7 @@ package arrays;
 public class Borough {
 
 	
-	public static Borough[] NY_BOROUGHS = { new Borough("Brooklyn"),
+	public static final Borough[] NY_BOROUGHS = { new Borough("Brooklyn"),
 		new Borough("Manhattan"), new Borough("Queens"),
 		new Borough("Bronx"), new Borough("Staten Island")};
 
