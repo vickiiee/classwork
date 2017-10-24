@@ -5,7 +5,7 @@ public class CaveRoom {
 	private String description;
 	private String direction; // tells you which door can be used
 	private String contents; // a symbol showing you what is in the room... 'X' when you are in the room
-	private String defaultcontents; //what is in the room when you aren't in the room
+	private String defaultContents; //what is in the room when you aren't in the room
 
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
@@ -19,8 +19,8 @@ public class CaveRoom {
 	
 	public CaveRoom(String description){
 		this.description = description;
-		setDefaultcontents(" ");
-		contents = defaultcontents;
+		setdefaultContents(" ");
+		contents = defaultContents;
 		//NOTE: Arrays are instantiated with ' null' values
 		borderingRooms = new CaveRoom[4];
 		doors = new Door[4];
@@ -72,9 +72,109 @@ public class CaveRoom {
 		//this is how you should be thinking
 		return direction[dir];
 	}
+	
+	
+	public void enter()
+	{
+		contents = "X";
+	}
+	
+	public void leave()
+	{
+		contents = defaultContents;
+	}
+	
+	
+	/**
+	 * This is how we join rooms together.
+	 * It gives this room access to anotherRoom and vice-versa
+	 * It also puts the door between both rooms
+	 * @param direction
+	 * @param anotherRoom
+	 * @param door
+	 */
+	public void setConnection(int direction, CaveRoom anotherRoom, Door door)
+	{
+		addRoom(direction, anotherRoom, door);
+		anotherRoom.addRoom(oppositeDirection(direction), this, door);
+	}
 
-	public void setDefaultcontents(String defaultcontents) {
-		this.defaultcontents = defaultcontents;
+	
+
+	public void addRoom(int dir, CaveRoom caveRoom, Door door) {
+		borderingRooms[dir] = caveRoom;
+		doors[dir] = door;
+		setDirections();//updates the directions
+		
+	}
+	
+	public void interpretInput(String input)
+	{
+		while (!isValid(input))
+		{
+			System.out.println("You can only enter a 'w', 'a', 's', 'd'." );
+			input = caveExplorer.in.nextLine();
+		}
+		
+		/*
+		 * convert w,a,s,d to direction, 0,3,2,1,
+		 */
+		
+		int direction = "wdsa".indexOf(input);
+		goToRoom(direction);
+		
+	}
+
+	
+	/**
+	 * returns true if w,a,s, or d is the input (NO IF STATEMENTS)
+	 * @param input
+	 * @return
+	 */
+	private boolean isValid(String input) {
+		String paths = "wdsa";
+		return paths.indexOf(input) > -1 && input.length() == 1;  
+	}
+
+	/**
+	 * This is where you set up caves
+	 */
+	public static void setUpCaves()
+	{
+		
+	}
+	
+	public void goToRoom(int direction) {
+		//make sure there is room to go to:
+		if (borderingRooms[direction] != null && doors[direction] != null && doors[direction].isOpen())
+		{
+			caveExplorer.currentRoom.leave();
+			caveExplorer.currentRoom = borderingRooms[direction];
+			caveExplorer.currentRoom.enter();
+			caveExplorer.inventory.updateMap();
+		}else
+		{
+			//print red text:
+			System.err.println("You can't do that!");
+		}
+	}
+
+	/**
+	 * returns the OPPOSITE direction
+	 * oD(0) returns 2 
+	 * oD(1) returns 3
+	 * @param dir
+	 * @return
+	 */
+	public static int oppositeDirection(int dir)
+	{
+		int [] opposite = {2, 3, 0, 1};
+		return opposite[dir];
+	}
+	
+	
+	public void setdefaultContents(String defaultContents) {
+		this.defaultContents = defaultContents;
 	}
 
 
