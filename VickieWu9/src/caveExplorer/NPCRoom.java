@@ -62,7 +62,7 @@ public class NPCRoom extends CaveRoom {
 		}
 	}
 	
-	public getContents() {
+	public String getContents() {
 		if(containsNPC() && npc.isActive())
 		{
 			return npc.getSymbol();

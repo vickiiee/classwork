@@ -169,17 +169,25 @@ public class CaveRoom {
 	public static void setUpCaves()
 	{
 		//1. Determine size of caves
-		caveExplorer.caves = new CaveRoom[5][5];
+		caveExplorer.caves = new NPCRoom[5][5];
 		CaveRoom[][] c = caveExplorer.caves;//create a shortcut for accessing CaveExplorer.caves
 		//2. populate with default caves
 		for(int row = 0; row < c.length; row++)
 		{
 			for(int col = 0; col < c[row].length; col++)
 			{
-				c[row][col] = new CaveRoom("This cave has coordinates " + row+  ", "+col);
+				c[row][col] = new NPCRoom("This cave has coordinates " + row+  ", "+col);
 			}
 		}
 		//3. replace some default rooms with custom rooms(SAVE FOR LATER)
+		
+		NPC testNPC = new NPC();
+		testNPC.setPosition(3,3);
+		caveExplorer.npcs = new NPC[1];
+		caveExplorer.npcs[0] = new testNPC;
+		
+		
+		
 		
 		//4. set Starting room
 		caveExplorer.currentRoom = c[0][1];
@@ -188,6 +196,8 @@ public class CaveRoom {
 		//5. Set up doors
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 		c[1][1].setConnection(EAST, c[1][2], new Door());
+		
+		
 	}
 	
 	public void goToRoom(int direction) {
