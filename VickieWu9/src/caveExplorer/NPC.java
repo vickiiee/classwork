@@ -17,7 +17,7 @@ public class NPC {
 	//default
 	public NPC() {
 		this.floor = caveExplorer.caves;
-		this.activeDescription = "There is a person standing in thte room," + "waiting to talk to you. Press 'e' to talk.";
+		this.activeDescription = "There is a person standing in the room," + "waiting to talk to you. Press 'e' to talk.";
 		this.inactiveDescription = "The person you spoke to earlier is " + "standing here.";
 		//by default, NPC does not have a position,
 		//to indicate this, use coordinates -1,-1
@@ -32,7 +32,7 @@ public class NPC {
 	}
 
 	public void interact() {
-		caveExplorer.print("Late's interact! Type 'bye' to stop.");
+		caveExplorer.print("Lets's interact! Type 'bye' to stop.");
 		String s = caveExplorer.in.nextLine();
 		while(!s.equalsIgnoreCase("bye")) {
 			caveExplorer.print("Yeah.... I don't do that a whole lot.");
@@ -76,17 +76,26 @@ public class NPC {
 		if(active)
 		{
 			int[] move = calculateMove();
-			int newRow = currentRow + move[0];
-			int newCol = currentCol + move[1];
+			int newRow = move[0];
+			int newCol = move[1];
 			setPosition(newRow, newCol);
 		}
 		
 	}
 
 	private int[] calculateMove() {
-		int[][] possibleMoves{{-1,0}, {0,1}, {1,0},{0,-1}};
-		int 
-		return null;
+		int[][] possibleMoves = {{-1,0}, {0,1}, {1,0}, {0,-1}};
+		int index = (int) (Math.random() * possibleMoves.length);
+		int[] newPosition = new int[2];
+		newPosition[0] = currentRow + possibleMoves[index][0];
+		newPosition[1] = currentCol + possibleMoves[index][1];
+		while(currentRoom.getDoor(index) == null || !(caveExplorer.caves[newPosition[0]][newPosition[1]] instanceof NPCRoom)) // instanceof:
+		{
+			index = (int) (Math.random() * possibleMoves.length);
+			newPosition[0] = currentRow + possibleMoves[index][0];
+			newPosition[1] = currentCol + possibleMoves[index][1];
+		}
+		return newPosition;
 	}
 
 }
