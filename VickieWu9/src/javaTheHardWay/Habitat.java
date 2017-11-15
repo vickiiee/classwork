@@ -6,56 +6,54 @@ public class Habitat extends Environment {
 	
 	public static void main(String[] args) {
 		Habitat h = new Habitat(5);
-		int count = 0;
+		int count =0;
 		while(count < 6) {
 			Animal a = new Animal();
 			h.addAnimal(a);
-			count ++;
+			count++;
 		}
-		System.out.println(h);
+			System.out.println(h);
 	}
 
-	public Habitat(int livingCapacity) {
-		super(livingCapacity);
-		animals = new Animal[livingCapacity];
+	public Habitat(int livingcapacity) {
+		super(livingcapacity);
+		animals = new Animal[livingcapacity];
 	}
 	
 	public String toString() {
-		return super.toString() + "\nHabitats:\n" + animalReport();
+		return super.toString()+"\nHabitants:\n"+animalReport();
 	}
-
-	public String animalReport() {
-		String s = "";
-		for(Animal a:animals) {
-			s+= a+"\n";
+	
+	private String animalReport() {
+		String s ="";
+		for(Animal a: animals) {
+			s +=a+"\n";
 		}
 		return s;
 	}
-
 	public Animal[] getAnimals() {
-		return animals;
+	return animals;
 	}
-	
+
 	public void addAnimal(Animal animal) {
-		 int i = 0;
-		 while(i < animals.length) {
-			 if (animals[i] == null) {
-				 animals[i] = animal;
-				 break;
-			 }
-		 }
+		int i =0;
+		while(i< animals.length) {
+			if(animals[i] == null) {
+				animals[i] = animal;
+				break;
+			}
 			i++;
 		}
-	
-	public void removeAnimal(int i)
-	{
-		animals[i] = null;
 	}
+	
+	public void removeAnimal(int i) {
+		animals[i] = null;
+		}
 	
 	public void removeAnimal(Animal a) {
-		for (int i = 0; i < animals.length; i++)
-		{
-			if(animals[i] ==a)animals[i] = null;
+		for(int i =0; i< animals.length; i++) {
+			if(animals[i] == a) animals[i] = null;
 		}
 	}
+
 }
