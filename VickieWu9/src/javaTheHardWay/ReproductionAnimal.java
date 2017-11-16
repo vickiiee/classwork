@@ -40,22 +40,19 @@ public class ReproductionAnimal extends RoamingAnimal{
 	}
 
 	public final void mate() {
+		
 		int i = 0; 
 		while(i < habitat.getAnimals().length) {
 			Animal target = habitat.getAnimals()[i];
-			if(target instanceof ReproductionAnimal && 
-					target.getDescription().equals(getDescription()) && 
-					((ReproductionAnimal) target).getSex()!=getSex() && 
-					!target.hasMated()) {
-				
-			Animal baby = getOffSpring((ReproductionAnimal)target);
+			if(target instanceof ReproductionAnimal && target.getDescription().equals(getDescription()) && ((ReproductionAnimal) target).getSex()!=getSex() && !target.hasMated()) {
+				Animal baby = getOffSpring((ReproductionAnimal)target);
 			
 				if(baby != null) {
 					int litterSize = (int)(Math.random() * maxLitter);
-					for(int j = 1; j<litterSize; j++) {
-						habitat.addAnimal(baby);
-						baby = getOffSpring((ReproductionAnimal)target);
-					}
+						for(int j = 1; j<litterSize; j++) {
+							habitat.addAnimal(baby);
+							baby = getOffSpring((ReproductionAnimal)target);
+						}
 					setMated(true);
 					target.setMated(true);
 					break;	
