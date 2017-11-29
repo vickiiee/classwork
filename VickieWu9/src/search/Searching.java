@@ -43,7 +43,7 @@ public class Searching {
 				+ "\n    Press 'enter' to begin.");
 		in.nextLine();
 
-int index = binarySearch(numbers, 0, numbers.length-1, target);
+		int index = binarySearch(numbers, 0, numbers.length-1, target);
 		
 		//int index = search(numbers, target);
 
@@ -56,33 +56,54 @@ int index = binarySearch(numbers, 0, numbers.length-1, target);
 	}
 
 
-private int binarySearch(int[] searchThis, int i, int j, int target) {
-		
-		int start = i;
-		int end = j;
-		
-		int num = 0; //middle
-		
-		while(num!=target) {
-			int  sum = start+end;
+	private int binarySearch(int[] nums, int start, int end, int target) {
 			
-			num = sum /2;
+		
+			/*int  sum = start+end;
 			
-			if(end - start ==3) {
+			int middle = sum /2;
+			
+			int num = searchThis[middle];
+			
+			if(num !=target) {
 				
-			}else {
-			if(num>target) {
-				start = num;
-				end = j;
-				binarySearch(numbers, start, end, target);
-			}else {
-				start = i;
-				end = num;
-				binarySearch(numbers, start, end, target);
+				if(end - start <=3 ) {
+					if(num != target) {
+						start = middle;
+						end = j;
+						binarySearch(numbers, start, end, target);
+						if(searchThis[middle] == target) {
+							return middle;
+						}
+					}
+				}else {
+				
+					if(num>target) {
+					start = middle;
+					end = j;
+					binarySearch(numbers, start, end, target);
+					}
+					else {
+					start = i;
+					end = middle;
+					binarySearch(numbers, start, end, target);
+				}
+				}
 			}
+			return -1;*/
+		
+		if(start > end) return -1;//base case
+		else
+		{
+			int mid = (start+end)/2;
+	
+			if (nums[mid]==target) return mid;
+			else if (nums[mid] > target)
+			{
+				return binarySearch(nums, start, mid-1, target); //if mid, the function will go on forever
+			}
+			else return binarySearch(nums, mid+1,end, target);
 		}
-		}
-		return -1;
 	}
 
 	private int search(int[] searchThis, int target) {
