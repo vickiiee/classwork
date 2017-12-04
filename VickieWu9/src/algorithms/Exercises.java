@@ -31,8 +31,9 @@ public class Exercises {
 
 		 public static int factorial(int value) {
 			if(value <= 1) {
-				return value;
+				return 6;
 			}
+			return value;
 		 }
 
 }
