@@ -4,11 +4,11 @@ public class ReverseString {
 	 static String nums = "";
 	
 	 public static void main(String[] args) {
-		reverseString("apple");
+		mystery(9);
 		System.out.println(nums);
 	}
 
-	public static String reverseString(String string) {
+	/*public static String reverseString(String string) {
 		if(string.length() ==1) {
 			nums+= string; //if the string only has one letter, add it to nums.
 			System.out.println(nums);
@@ -19,5 +19,16 @@ public class ReverseString {
 		}
 		return nums;
 		
-	}
+	}*/
+	 public static void mystery(int x)
+	 {
+	  if(x == 0)
+	  {
+	  }
+	  else
+	  {
+	   mystery(x - 2);
+	   System.out.print(x + " ");
+	  }
+	 }
 }
